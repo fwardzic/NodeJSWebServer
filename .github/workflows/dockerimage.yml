@@ -15,7 +15,7 @@ jobs:
     # - name: Determine Version
     #   uses: gittools/actions/gitversion/execute@v0
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/simpleserver:latests
+      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/simpleserver:$(git describe --tags)
     - name: Docker login
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
     - name: Push the Docker image
